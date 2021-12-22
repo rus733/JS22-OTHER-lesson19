@@ -79,7 +79,7 @@ let idInterval = setInterval(() => {
 */
 
 /// упростим  включатель выключатель
-
+/*
 //let count = 0;
 let active = false;
 let idTimeout;
@@ -105,9 +105,47 @@ const logger = (str) => {
     clearTimeout(idTimeout);
   }
 };
+*/
+/////////////практика  человечек и самолетик
 
-/////////////практика  человеечек и самолетик
+//через setTimeout
+/*
 const airplane = document.querySelector('.airplane');
 const man = document.querySelector('.man');
 
-let;
+let count = 0;
+
+const flyAnimate = () => {
+  count++;
+  console.log(count);
+  man.style.top = count + 'px';
+  airplane.style.left = count * 3 + 'px';
+
+  if (count < 200) setTimeout(flyAnimate, 10);
+};
+flyAnimate();
+*/
+
+//через setInterval
+
+const airplane = document.querySelector('.airplane');
+const man = document.querySelector('.man');
+let idInterval;
+
+let count = 0;
+
+const flyAnimate = () => {
+  count++;
+  console.log(count);
+
+  if (count < 200) {
+    man.style.top = count + 'px';
+    airplane.style.left = count * 3 + 'px';
+  } else if (count < 500) {
+    airplane.style.left = count * 3 + 'px';
+  } else {
+    clearInterval(idInterval);
+  }
+};
+
+idInterval = setInterval(flyAnimate, 10);
