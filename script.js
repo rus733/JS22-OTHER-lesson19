@@ -130,8 +130,9 @@ flyAnimate();
 
 const airplane = document.querySelector('.airplane');
 const man = document.querySelector('.man');
-let idInterval;
 
+let active = false;
+let idInterval;
 let count = 0;
 
 const flyAnimate = () => {
@@ -143,9 +144,18 @@ const flyAnimate = () => {
   } else if (count < 500) {
     airplane.style.left = count * 3 + 'px';
   } else {
-    //clearInterval(idInterval);
     cancelAnimationFrame(idInterval);
   }
 };
+// переключатель старта анимации
+document.addEventListener('click', () => {
+  if (active) {
+    cancelAnimationFrame(idInterval);
+    active = false;
+  } else {
+    idInterval = requestAnimationFrame(flyAnimate);
+    active = true;
+  }
+});
 
-//idInterval = setInterval(flyAnimate, 10);
+flyAnimate();
