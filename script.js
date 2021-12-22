@@ -105,3 +105,9 @@ const logger = (str) => {
     clearTimeout(idTimeout);
   }
 };
+
+/////////////практика  человеечек и самолетик
+const airplane = document.querySelector('.airplane');
+const man = document.querySelector('.man');
+
+let;
