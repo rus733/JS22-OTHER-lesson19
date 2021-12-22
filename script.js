@@ -136,16 +136,16 @@ let count = 0;
 
 const flyAnimate = () => {
   count++;
-  console.log(count);
-
+  idInterval = requestAnimationFrame(flyAnimate);
   if (count < 200) {
     man.style.top = count + 'px';
     airplane.style.left = count * 3 + 'px';
   } else if (count < 500) {
     airplane.style.left = count * 3 + 'px';
   } else {
-    clearInterval(idInterval);
+    //clearInterval(idInterval);
+    cancelAnimationFrame(idInterval);
   }
 };
 
-idInterval = setInterval(flyAnimate, 10);
+//idInterval = setInterval(flyAnimate, 10);
