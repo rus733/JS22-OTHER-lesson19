@@ -39,3 +39,32 @@ const timeFormat = () => {
     seconds,
   };
 };
+
+const getTimeRemaining = () => {
+  const dateStop = new Date('1 January 2022').getTime();
+  const dateNow = new Date().getTime();
+  const newYear = dateNow > dateStop ? true : false;
+  const timeRemaining = (dateStop - dateNow) / 1000;
+  const day = Math.floor(timeRemaining / 60 / 60 / 24);
+  return {
+    timeRemaining,
+    day,
+    newYear,
+  };
+};
+
+const daysTextForm = (n) => {
+  const textForms = [' день ', ' дня ', ' дней '];
+  n = Math.abs(n) % 100;
+  let n1 = n % 10;
+  if (n > 10 && n < 20) {
+    return textForms[2];
+  }
+  if (n1 > 1 && n1 < 5) {
+    return textForms[1];
+  }
+  if (n1 == 1) {
+    return textForms[0];
+  }
+  return textForms[2];
+};
