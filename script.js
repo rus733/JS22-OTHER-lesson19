@@ -1,3 +1,5 @@
+// урок 19/1  методы setTimeout и setInterval
+//
 //console.log(window);
 //window.setTimeout(() => {
 // console.log('привет я setTimeout');
