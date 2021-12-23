@@ -1,7 +1,4 @@
 const timer = (deadline) => {
-  console.log(deadline);
-  //const one = 'one';
-
   const timerHours = document.getElementById('timer-hours');
   const timerMinutes = document.getElementById('timer-minutes');
   const timerSeconds = document.getElementById('timer-seconds');
@@ -15,7 +12,6 @@ const timer = (deadline) => {
     let hours = Math.floor((timeRemaining / 60 / 60) % 24);
     let minutes = Math.floor((timeRemaining / 60) % 60);
     let seconds = Math.floor(timeRemaining % 60);
-    //console.log(`дней ${days}`);
     return {
       timeRemaining,
       days,
@@ -25,34 +21,32 @@ const timer = (deadline) => {
     };
   };
 
+  const addZero = (arg) => {
+    if (arg < 10) {
+      return '0' + arg;
+    } else {
+      return arg;
+    }
+  };
+
   const updateClock = () => {
     getTime = getTimeRemaining();
-    //console.log(`это запуск updateClock`);
 
     if (getTime.timeRemaining > 0) {
-      timerHours.textContent = getTime.hours;
-      timerMinutes.textContent = getTime.minutes;
-      timerSeconds.textContent = getTime.seconds;
+      timerHours.textContent = addZero(getTime.hours);
+      timerMinutes.textContent = addZero(getTime.minutes);
+      timerSeconds.textContent = addZero(getTime.seconds);
       console.log(`дней ${getTime.days}`);
     } else {
       timerHours.textContent = '00';
       timerMinutes.textContent = '00';
       timerSeconds.textContent = '00';
     }
-
-    //if (getTime.timeRemaining > 0) {
-    //setTimeout(updateClock, 1000);
-    //}
   };
 
-  //updateClock();
-  //setInterval(updateClock, 1000);
-  //setInterval(getTimeRemaining, 1000, '29 december 2021');
-
-  ///очистить интервал по счетчику
   let idInterval = setInterval(() => {
     updateClock();
-    if (getTime.timeRemaining < 0) {
+    if (getTime.timeRemaining <= 0) {
       clearInterval(idInterval);
     }
   }, 1000);
