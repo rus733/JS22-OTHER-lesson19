@@ -3,6 +3,7 @@ const timer = (deadline) => {
   const timerMinutes = document.getElementById('timer-minutes');
   const timerSeconds = document.getElementById('timer-seconds');
   let getTime;
+  let idInterval;
 
   const getTimeRemaining = () => {
     let dateStop = new Date(deadline).getTime();
@@ -12,6 +13,13 @@ const timer = (deadline) => {
     let hours = Math.floor((timeRemaining / 60 / 60) % 24);
     let minutes = Math.floor((timeRemaining / 60) % 60);
     let seconds = Math.floor(timeRemaining % 60);
+
+    if (timeRemaining <= 0) {
+      hours = 0;
+      minutes = 0;
+      seconds = 0;
+    }
+
     return {
       timeRemaining,
       days,
@@ -31,25 +39,14 @@ const timer = (deadline) => {
 
   const updateClock = () => {
     getTime = getTimeRemaining();
-
-    if (getTime.timeRemaining > 0) {
-      timerHours.textContent = addZero(getTime.hours);
-      timerMinutes.textContent = addZero(getTime.minutes);
-      timerSeconds.textContent = addZero(getTime.seconds);
-      console.log(`дней ${getTime.days}`);
-    } else {
-      timerHours.textContent = '00';
-      timerMinutes.textContent = '00';
-      timerSeconds.textContent = '00';
-    }
+    timerHours.textContent = addZero(getTime.hours);
+    timerMinutes.textContent = addZero(getTime.minutes);
+    timerSeconds.textContent = addZero(getTime.seconds);
+    console.log(`дней ${getTime.days}`);
   };
 
-  let idInterval = setInterval(() => {
-    updateClock();
-    if (getTime.timeRemaining <= 0) {
-      clearInterval(idInterval);
-    }
-  }, 1000);
+  updateClock();
+  idInterval = setInterval(updateClock, 1000);
 };
 
 export default timer;
