@@ -2,7 +2,7 @@
 // дз 19 п.6
 const date = new Date();
 
-const timer2 = (dataTimeNewYear) => {
+const timer = (dataTimeNewYear) => {
   const dateBlock = document.getElementById('date-block');
   const daysName = ['Понедельник', 'Вторник', 'Среда', 'Четверг', 'Пятница', 'Суббота', 'Воскресенье'];
   const addZero = (arg) => {
@@ -46,7 +46,6 @@ const timer2 = (dataTimeNewYear) => {
   const getTimeRemaining = () => {
     const year = date.getFullYear() + 1; //внес переменную
     const dateStop = new Date(year, 0, 1).getTime(); //
-
     const dateNow = new Date().getTime();
     const newYear = dateNow > dateStop ? true : false;
     const timeRemaining = (dateStop - dateNow) / 1000;
@@ -97,4 +96,4 @@ const timer2 = (dataTimeNewYear) => {
     }, 1000);
   }
 };
-timer2();
+timer();
