@@ -14,6 +14,7 @@ const timer = (deadline) => {
     let seconds = Math.floor(timeRemaining % 60);
 
     if (timeRemaining <= 0) {
+      clearInterval(idInterval);
       hours = 0;
       minutes = 0;
       seconds = 0;
