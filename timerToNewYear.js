@@ -45,8 +45,9 @@ const timer2 = (dataTimeNewYear) => {
 
   // остаток времени
   const getTimeRemaining = () => {
-    const year = date.getFullYear() + 1;
-    const dateStop = new Date(year, 0, 1).getTime();
+    const year = date.getFullYear() + 1; //внес переменную
+    const dateStop = new Date(year, 0, 1).getTime(); //
+
     const dateNow = new Date().getTime();
     const newYear = dateNow > dateStop ? true : false;
     const timeRemaining = (dateStop - dateNow) / 1000;
