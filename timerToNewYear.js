@@ -41,7 +41,6 @@ const timer2 = (dataTimeNewYear) => {
       seconds,
     };
   };
-  const getDataNewYear = () => {};
 
   // остаток времени
   const getTimeRemaining = () => {
@@ -98,4 +97,4 @@ const timer2 = (dataTimeNewYear) => {
     }, 1000);
   }
 };
-timer2('1 January 2022');
+timer2();
