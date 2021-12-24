@@ -2,7 +2,6 @@ const timer = (deadline) => {
   const timerHours = document.getElementById('timer-hours');
   const timerMinutes = document.getElementById('timer-minutes');
   const timerSeconds = document.getElementById('timer-seconds');
-  let getTime;
   let idInterval;
 
   const getTimeRemaining = () => {
@@ -37,13 +36,14 @@ const timer = (deadline) => {
   };
 
   const updateClock = () => {
-    getTime = getTimeRemaining();
-    timerHours.textContent = addZero(getTime.hours);
-    timerMinutes.textContent = addZero(getTime.minutes);
-    timerSeconds.textContent = addZero(getTime.seconds);
+    const allTime = getTimeRemaining();
+    timerHours.textContent = addZero(allTime.hours);
+    timerMinutes.textContent = addZero(allTime.minutes);
+    timerSeconds.textContent = addZero(allTime.seconds);
   };
 
-  //updateClock();
+  updateClock();
+
   idInterval = setInterval(updateClock, 1000);
 };
 
