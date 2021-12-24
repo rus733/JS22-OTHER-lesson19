@@ -1,5 +1,7 @@
 'use strict';
 // дз 19 п.6
+const date = new Date();
+
 const timer2 = (dataTimeNewYear) => {
   const dateBlock = document.getElementById('date-block');
   const daysName = ['Понедельник', 'Вторник', 'Среда', 'Четверг', 'Пятница', 'Суббота', 'Воскресенье'];
@@ -13,7 +15,6 @@ const timer2 = (dataTimeNewYear) => {
 
   // формат времени и приветствия
   const timeFormat = () => {
-    const date = new Date();
     const dayWeek = daysName[new Date().getDay() - 1];
     const hour = date.getHours();
     const amPM = hour >= 12 ? 'PM' : 'AM';
@@ -40,9 +41,12 @@ const timer2 = (dataTimeNewYear) => {
       seconds,
     };
   };
+  const getDataNewYear = () => {};
+
   // остаток времени
   const getTimeRemaining = () => {
-    const dateStop = new Date(dataTimeNewYear).getTime();
+    const year = date.getFullYear() + 1;
+    const dateStop = new Date(year, 0, 1).getTime();
     const dateNow = new Date().getTime();
     const newYear = dateNow > dateStop ? true : false;
     const timeRemaining = (dateStop - dateNow) / 1000;
