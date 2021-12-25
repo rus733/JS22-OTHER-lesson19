@@ -1,10 +1,11 @@
 'use strict';
 // дз 19 п.6
-const date = new Date();
+const timer = () => {
+  const date = new Date(); // вынес сюда
 
-const timer = (dataTimeNewYear) => {
   const dateBlock = document.getElementById('date-block');
   const daysName = ['Понедельник', 'Вторник', 'Среда', 'Четверг', 'Пятница', 'Суббота', 'Воскресенье'];
+
   const addZero = (arg) => {
     if (arg > 0 && arg < 10) {
       return '0' + arg;
@@ -15,6 +16,7 @@ const timer = (dataTimeNewYear) => {
 
   // формат времени и приветствия
   const timeFormat = () => {
+    const date = new Date(); // если убрать , не работает
     const dayWeek = daysName[new Date().getDay() - 1];
     const hour = date.getHours();
     const amPM = hour >= 12 ? 'PM' : 'AM';
@@ -43,21 +45,21 @@ const timer = (dataTimeNewYear) => {
   };
 
   // остаток времени
+
   const getTimeRemaining = () => {
-    const year = date.getFullYear() + 1; //внес переменную
-    const dateStop = new Date(year, 0, 1).getTime(); //
+    const year = date.getFullYear() + 1;
+    const dateStop = new Date(year, 0, 1).getTime();
     const dateNow = new Date().getTime();
-    const newYear = dateNow > dateStop ? true : false;
     const timeRemaining = (dateStop - dateNow) / 1000;
     const daysNumber = Math.floor(timeRemaining / 60 / 60 / 24);
     return {
       timeRemaining,
       daysNumber,
-      newYear,
     };
   };
 
   //форма окончания слова день
+
   const daysTextForm = (n) => {
     const textForms = [' день ', ' дня ', ' дней '];
     n = Math.abs(n) % 100;
@@ -85,15 +87,7 @@ const timer = (dataTimeNewYear) => {
   До нового года осталось ${timer.daysNumber} ${daysTextForm(timer.daysNumber)}`;
   };
 
-  if (getTimeRemaining().timeRemaining > 0) {
-    textDate();
-    const timerId = setInterval(() => {
-      if (getTimeRemaining().newYear) {
-        clearInterval(timerId);
-      } else {
-        textDate();
-      }
-    }, 1000);
-  }
+  textDate();
+  setInterval(textDate, 1000);
 };
 timer();
