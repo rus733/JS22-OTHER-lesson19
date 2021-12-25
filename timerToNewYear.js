@@ -1,13 +1,29 @@
 'use strict';
 // дз 19 п.6
+
+// Запрашиваем день недели вместе с длинным форматом даты
+//const date = new Date();
+//var date = new Date();
+//var options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+//console.log(date.toLocaleDateString('ru-RU', options));
+// → "Donnerstag, 20. Dezember 2012"
+//const date = new Date(); // вынес сюда
+//const today = new Date();
+
+//const weekDayName = date.toLocaleDateString('ru', { weekday: 'long' });
+
+////console.log(`${today.toLocaleTimeString('en-US', { hour: 'numeric', minute: 'numeric', second: 'numeric' })}`);
+//console.log(`${today.toLocaleTimeString('en-US', { hour: 'numeric' })}`);
+const date = new Date();
+
 const timer = () => {
-  const date = new Date(); // вынес сюда
+  //const date = new Date();
 
   const dateBlock = document.getElementById('date-block');
-  const daysName = ['Понедельник', 'Вторник', 'Среда', 'Четверг', 'Пятница', 'Суббота', 'Воскресенье'];
+  const daysName = ['Понедельник', 'Вторник', 'Среда', 'Четверг', 'Пятница', 'Суббота'];
 
   const addZero = (arg) => {
-    if (arg > 0 && arg < 10) {
+    if (arg >= 0 && arg < 10) {
       return '0' + arg;
     } else {
       return arg;
@@ -21,6 +37,7 @@ const timer = () => {
     const hour = date.getHours();
     const amPM = hour >= 12 ? 'PM' : 'AM';
     const hours = hour > 12 ? hour - 12 : hour;
+    const zero = hours >= 0 && hours < 10 ? '0' : ''; //добавил 0 перед 'en' часами
     const minutes = addZero(date.getMinutes());
     const seconds = addZero(date.getSeconds());
     let namePartDay = '';
@@ -41,6 +58,7 @@ const timer = () => {
       hours,
       minutes,
       seconds,
+      zero, // добавил
     };
   };
 
@@ -77,13 +95,13 @@ const timer = () => {
   };
 
   // вывод данных
-
   const textDate = () => {
     const time = timeFormat();
     const timer = getTimeRemaining();
     dateBlock.innerHTML = `${time.namePartDay} <br>
   Сегодня: ${time.dayWeek} <br>
-  Текущее время: ${addZero(time.hours)}:${time.minutes}:${time.seconds} ${time.amPM}<br>
+  Текущее время1: ${time.zero}${date.toLocaleTimeString('en-US', { hour: 'numeric', minute: 'numeric', second: 'numeric' })} <br>
+  Текущее время2: ${addZero(time.hours)}:${time.minutes}:${time.seconds} ${time.amPM}<br>
   До нового года осталось ${timer.daysNumber} ${daysTextForm(timer.daysNumber)}`;
   };
 
