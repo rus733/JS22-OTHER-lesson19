@@ -3,13 +3,6 @@
 
 const timerToNewYear = () => {
   const dateBlock = document.getElementById('date-block');
-  const addZero = (arg) => {
-    if (arg >= 0 && arg < 10) {
-      return '0' + arg;
-    } else {
-      return arg;
-    }
-  };
 
   // формат времени и приветствия
   const timeFormat = () => {
