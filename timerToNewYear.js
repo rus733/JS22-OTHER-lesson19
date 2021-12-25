@@ -19,7 +19,7 @@ const timer = () => {
   //const date = new Date();
   const date = new Date();
   const dateBlock = document.getElementById('date-block');
-  const daysName = ['Понедельник', 'Вторник', 'Среда', 'Четверг', 'Пятница', 'Суббота'];
+  //const daysName = ['Понедельник', 'Вторник', 'Среда', 'Четверг', 'Пятница', 'Суббота'];
 
   const addZero = (arg) => {
     if (arg >= 0 && arg < 10) {
@@ -32,11 +32,9 @@ const timer = () => {
   // формат времени и приветствия
   const timeFormat = () => {
     const date = new Date(); // если убрать , не работает
-    const dayWeek = daysName[new Date().getDay() - 1];
     const hour = date.getHours();
     const amPM = hour >= 12 ? 'PM' : 'AM';
     const hours = hour > 12 ? hour - 12 : hour;
-    const zero = hours >= 0 && hours < 10 ? '0' : ''; //добавил 0 перед 'en' часами
     const minutes = addZero(date.getMinutes());
     const seconds = addZero(date.getSeconds());
     let namePartDay = '';
@@ -53,11 +51,10 @@ const timer = () => {
     return {
       namePartDay,
       amPM,
-      dayWeek,
       hours,
       minutes,
       seconds,
-      zero, // добавил
+      date,
     };
   };
 
@@ -95,15 +92,15 @@ const timer = () => {
 
   // вывод данных
   const textDate = () => {
-    const date = new Date();
+    //const date = new Date();
     const time = timeFormat();
     const timer = getTimeRemaining();
+    const dayWeek = time.date.toLocaleDateString('ru', { weekday: 'long' }); //ltym недели в локальном варианте
+
     dateBlock.innerHTML = `${time.namePartDay} <br>
-  Сегодня: ${time.dayWeek} <br>
-  Сегодня: ${date.toLocaleDateString('ru', { weekday: 'long' })} <br>
-  Текущее время1: ${date.toLocaleTimeString('en-US', { hour: '2-digit', minute: 'numeric', second: 'numeric' })} <br>
-  Текущее время2: ${addZero(time.hours)}:${time.minutes}:${time.seconds} ${time.amPM}<br>
-  До нового года осталось ${timer.daysNumber} ${daysTextForm(timer.daysNumber)}`;
+    Сегодня: ${dayWeek[0].toUpperCase() + dayWeek.substring(1)} <br>
+    Текущее время: ${time.date.toLocaleTimeString('en-US', { hour: '2-digit', minute: 'numeric', second: 'numeric' })} <br>
+    До нового года осталось ${timer.daysNumber} ${daysTextForm(timer.daysNumber)}`;
   };
 
   textDate();
