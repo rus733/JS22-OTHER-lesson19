@@ -14,11 +14,10 @@
 
 ////console.log(`${today.toLocaleTimeString('en-US', { hour: 'numeric', minute: 'numeric', second: 'numeric' })}`);
 //console.log(`${today.toLocaleTimeString('en-US', { hour: 'numeric' })}`);
-const date = new Date();
 
 const timer = () => {
   //const date = new Date();
-
+  const date = new Date();
   const dateBlock = document.getElementById('date-block');
   const daysName = ['Понедельник', 'Вторник', 'Среда', 'Четверг', 'Пятница', 'Суббота'];
 
@@ -96,11 +95,13 @@ const timer = () => {
 
   // вывод данных
   const textDate = () => {
+    const date = new Date();
     const time = timeFormat();
     const timer = getTimeRemaining();
     dateBlock.innerHTML = `${time.namePartDay} <br>
   Сегодня: ${time.dayWeek} <br>
-  Текущее время1: ${time.zero}${date.toLocaleTimeString('en-US', { hour: 'numeric', minute: 'numeric', second: 'numeric' })} <br>
+  Сегодня: ${date.toLocaleDateString('ru', { weekday: 'long' })} <br>
+  Текущее время1: ${date.toLocaleTimeString('en-US', { hour: '2-digit', minute: 'numeric', second: 'numeric' })} <br>
   Текущее время2: ${addZero(time.hours)}:${time.minutes}:${time.seconds} ${time.amPM}<br>
   До нового года осталось ${timer.daysNumber} ${daysTextForm(timer.daysNumber)}`;
   };
