@@ -17,7 +17,7 @@
 
 const timer = () => {
   //const date = new Date();
-  const date = new Date();
+  //const date = new Date();
   const dateBlock = document.getElementById('date-block');
   //const daysName = ['Понедельник', 'Вторник', 'Среда', 'Четверг', 'Пятница', 'Суббота'];
 
@@ -33,10 +33,6 @@ const timer = () => {
   const timeFormat = () => {
     const date = new Date(); // если убрать , не работает
     const hour = date.getHours();
-    const amPM = hour >= 12 ? 'PM' : 'AM';
-    const hours = hour > 12 ? hour - 12 : hour;
-    const minutes = addZero(date.getMinutes());
-    const seconds = addZero(date.getSeconds());
     let namePartDay = '';
     if (hour >= 5 && hour < 10) {
       namePartDay = 'Доброе утро';
@@ -50,10 +46,6 @@ const timer = () => {
 
     return {
       namePartDay,
-      amPM,
-      hours,
-      minutes,
-      seconds,
       date,
     };
   };
@@ -61,7 +53,8 @@ const timer = () => {
   // остаток времени
 
   const getTimeRemaining = () => {
-    const year = date.getFullYear() + 1;
+    const time = timeFormat();
+    const year = time.date.getFullYear() + 1;
     const dateStop = new Date(year, 0, 1).getTime();
     const dateNow = new Date().getTime();
     const timeRemaining = (dateStop - dateNow) / 1000;
@@ -95,8 +88,7 @@ const timer = () => {
     //const date = new Date();
     const time = timeFormat();
     const timer = getTimeRemaining();
-    const dayWeek = time.date.toLocaleDateString('ru', { weekday: 'long' }); //ltym недели в локальном варианте
-
+    const dayWeek = time.date.toLocaleDateString('ru', { weekday: 'long' }); //дни недели в локальном
     dateBlock.innerHTML = `${time.namePartDay} <br>
     Сегодня: ${dayWeek[0].toUpperCase() + dayWeek.substring(1)} <br>
     Текущее время: ${time.date.toLocaleTimeString('en-US', { hour: '2-digit', minute: 'numeric', second: 'numeric' })} <br>
