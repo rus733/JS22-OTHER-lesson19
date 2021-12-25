@@ -13,7 +13,7 @@ const timerToNewYear = () => {
 
   // формат времени и приветствия
   const timeFormat = () => {
-    const date = new Date(); // если убрать , не работает
+    const date = new Date();
     const hour = date.getHours();
     let namePartDay = '';
     if (hour >= 5 && hour < 10) {
@@ -67,7 +67,6 @@ const timerToNewYear = () => {
   // вывод данных
   const textDate = () => {
     const { date, namePartDay } = timeFormat();
-    //const time = timeFormat();
     const timer = getTimeRemaining(date);
     const dayWeek = date.toLocaleDateString('ru', { weekday: 'long' }); //дни недели в локальном
     dateBlock.innerHTML = `${namePartDay} <br>
