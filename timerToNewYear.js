@@ -1,26 +1,8 @@
 'use strict';
 // дз 19 п.6
 
-// Запрашиваем день недели вместе с длинным форматом даты
-//const date = new Date();
-//var date = new Date();
-//var options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-//console.log(date.toLocaleDateString('ru-RU', options));
-// → "Donnerstag, 20. Dezember 2012"
-//const date = new Date(); // вынес сюда
-//const today = new Date();
-
-//const weekDayName = date.toLocaleDateString('ru', { weekday: 'long' });
-
-////console.log(`${today.toLocaleTimeString('en-US', { hour: 'numeric', minute: 'numeric', second: 'numeric' })}`);
-//console.log(`${today.toLocaleTimeString('en-US', { hour: 'numeric' })}`);
-
 const timer = () => {
-  //const date = new Date();
-  //const date = new Date();
   const dateBlock = document.getElementById('date-block');
-  //const daysName = ['Понедельник', 'Вторник', 'Среда', 'Четверг', 'Пятница', 'Суббота'];
-
   const addZero = (arg) => {
     if (arg >= 0 && arg < 10) {
       return '0' + arg;
@@ -85,7 +67,6 @@ const timer = () => {
 
   // вывод данных
   const textDate = () => {
-    //const date = new Date();
     const time = timeFormat();
     const timer = getTimeRemaining();
     const dayWeek = time.date.toLocaleDateString('ru', { weekday: 'long' }); //дни недели в локальном
