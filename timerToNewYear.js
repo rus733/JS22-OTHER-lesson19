@@ -1,7 +1,7 @@
 'use strict';
 // дз 19 п.6
 
-const timer = () => {
+const timerToNewYear = () => {
   const dateBlock = document.getElementById('date-block');
   const addZero = (arg) => {
     if (arg >= 0 && arg < 10) {
@@ -34,9 +34,8 @@ const timer = () => {
 
   // остаток времени
 
-  const getTimeRemaining = () => {
-    const time = timeFormat();
-    const year = time.date.getFullYear() + 1;
+  const getTimeRemaining = (date) => {
+    const year = date.getFullYear() + 1;
     const dateStop = new Date(year, 0, 1).getTime();
     const dateNow = new Date().getTime();
     const timeRemaining = (dateStop - dateNow) / 1000;
@@ -67,16 +66,17 @@ const timer = () => {
 
   // вывод данных
   const textDate = () => {
-    const time = timeFormat();
-    const timer = getTimeRemaining();
-    const dayWeek = time.date.toLocaleDateString('ru', { weekday: 'long' }); //дни недели в локальном
-    dateBlock.innerHTML = `${time.namePartDay} <br>
+    const { date, namePartDay } = timeFormat();
+    //const time = timeFormat();
+    const timer = getTimeRemaining(date);
+    const dayWeek = date.toLocaleDateString('ru', { weekday: 'long' }); //дни недели в локальном
+    dateBlock.innerHTML = `${namePartDay} <br>
     Сегодня: ${dayWeek[0].toUpperCase() + dayWeek.substring(1)} <br>
-    Текущее время: ${time.date.toLocaleTimeString('en-US', { hour: '2-digit', minute: 'numeric', second: 'numeric' })} <br>
+    Текущее время: ${date.toLocaleTimeString('en-US', { hour: '2-digit', minute: 'numeric', second: 'numeric' })} <br>
     До нового года осталось ${timer.daysNumber} ${daysTextForm(timer.daysNumber)}`;
   };
 
   textDate();
   setInterval(textDate, 1000);
 };
-timer();
+timerToNewYear();
